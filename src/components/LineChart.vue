@@ -2,12 +2,14 @@
   <!-- <canvas id="barChart"></canvas> -->
   <!-- <Bar id="bar-id" :options="chartOptions" :data="compChartData" /> -->
   <Line id="line-id" :options="chartOptions" :data="compChartData" />
+  <!-- {{ yearLabels }} -->
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
 import { BarController, Chart } from "chart.js";
 import { planetChartData } from "../data/planet-data.js";
+import { useAstronautStore } from "@/store";
 import { Bar } from "vue-chartjs";
 import { Line } from "vue-chartjs";
 import {
@@ -41,19 +43,21 @@ ChartJS.register(
 
 const testData = ref({ data: [30, 20, 12, 10] });
 
+const yearLabels = ref([]);
+
 //pull computed data here
 
 const chartOptions = ref({
   responsive: false,
   maintainAspectRatio: true,
-  lineTension: 1,
+  lineTension: 0.2,
 });
 
-const chartData = ref({
-  labels: ["30-40 years", "40-50 years", "50-60 years", "60 year and up"],
+let chartData = ref({
+  labels: [],
   datasets: [
     {
-      label: "Age Range",
+      label: "Recent Launch mission",
       data: [],
       backgroundColor: [
         "rgba(75, 192, 192, 0.2)",
@@ -65,12 +69,50 @@ const chartData = ref({
   ],
 });
 
+const astroStore = useAstronautStore();
+
 const compChartData = computed(() => {
+  let astroData = JSON.parse(JSON.stringify(astroStore.astroData));
+  let years = [];
+  let yearsCount = {};
+  let results = ref([]);
+
+  for (let i = 0; i < astroData.length; i++) {
+    if (astroData[i].status.id == 1 && astroData[i].last_flight != null) {
+      let d = new Date(astroData[i].last_flight);
+      let y = d.getFullYear();
+
+      // if (y == null) {
+      //   console.log(y);
+      //   console.log(astroData[i]);
+      // }
+
+      if (!years.includes(y)) {
+        years.push(y);
+        yearsCount[y] = 1;
+      } else {
+        yearsCount[y]++;
+      }
+
+      // console.log(astroData[i])
+      //2021-04-23T09:49:02Z
+    }
+  }
+
+  years.sort();
+
+  for (let i = 0; i < years.length; i++) {
+    let y = years[i];
+    results.value.push(yearsCount[y]);
+  }
+
+  console.log(years);
+  console.log(results.value);
+  yearLabels.value = years;
+
   let data = JSON.parse(JSON.stringify(chartData.value));
-
-  data.datasets[0].data = testData.value.data;
-
-//   console.log(chartData.value);
+  data.datasets[0].data = results.value;
+  data.labels = years;
 
   return data;
 });
