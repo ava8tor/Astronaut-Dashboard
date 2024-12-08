@@ -5,35 +5,101 @@ import BarChart from "./components/BarChart.vue"
 import PieChart from "./components/PieChart.vue";
 import LineChart from "./components/LineChart.vue";
 import Doughnutchart from "./components/Doughnutchart.vue";
+import Card from "./components/Card.vue";
 import { useAstronautStore } from "./store";
 // import { inject } from 'vue';
 import axios from 'axios';
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 
 
 const astroStore = useAstronautStore();
 astroStore.fetchAstroData();
-// const axios: any = inject('axios')
 
-// const getList = (): void => {  
-//   axios.get('https://ll.thespacedevs.com/2.3.0/astronauts')
-//     .then(( response: { data: any}) => {
-//       console.log(response.data)
-//     })
+const cardOneLabel = ref("Card One");
+const cardOneAmount = ref("0");
 
-// console.log("getlist" + getList);
-// }
+const astronautsActive = computed(() => {
+  let data = JSON.parse(JSON.stringify(astroStore.astroData));
+  let count = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].status.id == 1) {
+      count++;
+    }
+  }
+  
+  let results = {label: "Total Active", amount: count};
 
-// console.log("checking");
-// const test = ref (null);
+  return results;
 
-// axios.get('https://ll.thespacedevs.com/2.3.0/astronauts')
-//     .then(( response: { data: any}) => {
-//       test.value = response.data;
-//     });
 
-// console.log(test.value);
+}); 
+
+
+const astronautsInTraining = computed(() => {
+  let data = JSON.parse(JSON.stringify(astroStore.astroData));
+  let count = 0;
+  console.log(data);
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].status.id == 3) {
+      count++;
+    }
+  }
+  
+  let results = {label: "Total In Training", amount: count};
+
+  return results;
+
+}); 
+
+
+const astronautsInSpace = computed(() => {
+
+  let data = JSON.parse(JSON.stringify(astroStore.astroData));
+  let count = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].in_space == true) {
+      count++;
+    }
+  }
+  
+  let results = {label: "Total In Space", amount: count};
+
+  return results;
+}); 
+
+const astronautsWhoHaveFlown = computed(() => {
+
+let data = JSON.parse(JSON.stringify(astroStore.astroData));
+let count = 0;
+for (let i = 0; i < data.length; i++) {
+  if (data[i].flights_count > 0 &&  data[i].status.id == 1) {
+    count++;
+  }
+}
+
+let results = {label: "Total Have flown", amount: count};
+
+return results;
+}); 
+
+const astronautsWhoHaveSpaceWalked = computed(() => {
+
+let data = JSON.parse(JSON.stringify(astroStore.astroData));
+let count = 0;
+for (let i = 0; i < data.length; i++) {
+  if (data[i].spacewalks_count > 0 &&  data[i].status.id == 1) {
+    count++;
+  }
+}
+
+let results = {label: "Total Have spacewalked", amount: count};
+
+return results;
+}); 
+
+
+
 </script>
 
 <template>
@@ -52,20 +118,27 @@ astroStore.fetchAstroData();
 
   <main class="main-content">
     <!-- <TheWelcome /> -->
-    <h1>View statistics here</h1>
+    <h1>Displaying Live statistics</h1>
     <h2>Row 1</h2>
     <div class="row">
       <div class="col">
-        Card_1
+        <Card :label="astronautsInTraining.label" :amount="astronautsInTraining.amount"/>
+      </div>
+      <div class="col">
+        <Card :label="astronautsActive.label" :amount="astronautsActive.amount"/>
        <!-- <canvas id="myChart"></canvas> -->
       </div>
-      <div class="col">Card_2</div>
-      <div class="col">Card_3</div>
-      <div class="col">Card_4
-
+      <div class="col">
+        <Card :label="astronautsInSpace.label" :amount="astronautsInSpace.amount"/>
+      </div>
+      <div class="col">
+        <Card :label="astronautsWhoHaveFlown.label" :amount="astronautsWhoHaveFlown.amount"/>
+      </div>
+      <div class="col">
+        <Card :label="astronautsWhoHaveSpaceWalked.label" :amount="astronautsWhoHaveSpaceWalked.amount"/>
       </div>
     </div>
-    <h2>Row 2</h2>
+    <!-- <h2>Row 2</h2> -->
     <div class="row">
       <div class="col col-lg-6 mx-6">Chart_1 (line/bar)
         <BarChart></BarChart>
@@ -74,7 +147,7 @@ astroStore.fetchAstroData();
         <PieChart></PieChart>
       </div>
     </div>
-    <h2>Row 3</h2>
+    <!-- <h2>Row 3</h2> -->
     <div class="row">
       <div class="col col-lg-6 mx-6">Chart_3 (line/bar)
          <LineChart></LineChart>
