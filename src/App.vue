@@ -103,24 +103,25 @@ return results;
 </script>
 
 <template>
-  <header>
+  <header class="topHeader">
     <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
 
     <!-- <div class="wrapper">
       <HelloWorld msg="You did it!" />
     </div> -->
+
     <div class="sidebar">
       <h2>Astronaut Dashboard</h2>
-      <a href="#home">Dashboard</a>
-      <a href="#services">Table</a>
+      <!-- <a href="#home">Dashboard</a>
+      <a href="#services">Table</a> -->
     </div>
   </header>
 
   <main class="main-content">
     <!-- <TheWelcome /> -->
-    <h1>Displaying Live statistics</h1>
-    <h2>Row 1</h2>
-    <div class="row">
+    <!-- <h2>Displaying Live statistics</h2> -->
+    <!-- <h2>Row 1</h2> -->
+    <div class="row mt-5">
       <div class="col">
         <Card :label="astronautsInTraining.label" :amount="astronautsInTraining.amount"/>
       </div>
@@ -139,7 +140,7 @@ return results;
       </div>
     </div>
     <!-- <h2>Row 2</h2> -->
-    <div class="row">
+    <div class="row mt-5">
       <div class="col col-lg-6 mx-6">Chart_1 (line/bar)
         <BarChart></BarChart>
       </div>
@@ -148,7 +149,7 @@ return results;
       </div>
     </div>
     <!-- <h2>Row 3</h2> -->
-    <div class="row">
+    <div class="row mt-5">
       <div class="col col-lg-6 mx-6">Chart_3 (line/bar)
          <LineChart></LineChart>
       </div>
@@ -169,10 +170,16 @@ return results;
 } */
 
 /* Sidebar styles */
+
+.topHeader {
+  background-color: #333;
+  height: 10vh;
+}
+
 .sidebar {
   height: 100vh;
   /* Full height */
-  width: 250px;
+  width: 210px;
   /* Set the width of the sidebar */
   position: fixed;
   /* Keep it fixed on the left side */
@@ -183,6 +190,10 @@ return results;
   color: white;
   /* Text color */
   padding-top: 20px;
+}
+
+.sidebar > h2 {
+  text-align: center;
 }
 
 .sidebar a {
@@ -210,11 +221,15 @@ return results;
   margin: auto;
 }
 
+
 /* Main content */
 .main-content {
-  margin-left: 260px;
+  margin-left: 210px;
   /* Offset the content to the right of the sidebar */
   padding: 20px;
+  /* background-image: url(assets/maxresdefault.png);
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 @media (max-width: 1250px) {
