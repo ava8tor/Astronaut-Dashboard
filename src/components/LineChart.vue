@@ -106,8 +106,8 @@ const compChartData = computed(() => {
     results.value.push(yearsCount[y]);
   }
 
-  console.log(years);
-  console.log(results.value);
+  // console.log(years);
+  // console.log(results.value);
   yearLabels.value = years;
 
   let data = JSON.parse(JSON.stringify(chartData.value));
