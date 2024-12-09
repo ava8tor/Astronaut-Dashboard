@@ -8,6 +8,15 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+html{
+  overflow: hidden;
+}
+
+
+.chart-body{
+  height: 250px;
+}
+
 /* body{
   margin: 0px;
 } */

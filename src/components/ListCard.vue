@@ -2,8 +2,8 @@
   <!-- <Pie id="pie-id" :options="chartOptions" :data="compChartData" /> -->
   <!-- {{ nationalityData }} -->
   <div class="card">
-    <div class="card-header">Nationality</div>
-    <ul class="table_container list-group list-group-flush overflow-auto">
+    <div class="card-header"><h4>Nationality</h4></div>
+    <ul class=" chart-body table_container list-group list-group-flush overflow-auto">
       <li class="list-group-item d-flex align-items-center" v-for="item in nationalityData">
         <span class="d-flex justify-content-start">{{ item.name }}</span>  <span class="d-flex justify-content-end ms-auto">{{ item.value }}</span>
       </li>
@@ -123,17 +123,6 @@ const nationalityData = computed(() => {
 </script>
 
 <style>
-/* canvas{
-    border: 2px solid green;
-    } */
-
-/* #pie-id { 
-  border: 2px solid green;
-  margin: auto;
-  width: 300px;
-  min-width: 2/00px;
-  max-height: 300px;
-} */
 
 /* .table_container { */
   /* margin: auto; */
@@ -143,7 +132,7 @@ const nationalityData = computed(() => {
 
 
 ul {
-  height: 200px;
+  height: 280px;
 }
 
 .card {
@@ -152,7 +141,4 @@ ul {
   margin: auto;
 }
 
-/* span {
-  border: 1px solid bisque
-} */
 </style>

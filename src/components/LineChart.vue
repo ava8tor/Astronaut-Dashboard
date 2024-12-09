@@ -1,8 +1,10 @@
 <template>
-  <!-- <canvas id="barChart"></canvas> -->
-  <!-- <Bar id="bar-id" :options="chartOptions" :data="compChartData" /> -->
-  <Line id="line-id" :options="chartOptions" :data="compChartData" />
-  <!-- {{ yearLabels }} -->
+  <div class="card">
+    <div class="card-header"><h4>Latest Launch mission per Astronaut</h4></div>
+    <div class="card-body chart-body">
+      <Line id="line-id" :options="chartOptions" :data="compChartData" />
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -51,6 +53,11 @@ const chartOptions = ref({
   responsive: false,
   maintainAspectRatio: true,
   lineTension: 0.2,
+  plugins: {
+    legend: {
+      display: false
+    }
+  }
 });
 
 let chartData = ref({
@@ -127,7 +134,7 @@ const compChartData = computed(() => {
   position: relative;
   margin: auto;
   /* width: 100%; */
-  width: 500px;
+  width: 100%;
   /* max-width: 500px; */
   /* min-width: 500px; */
   max-height: 300px;

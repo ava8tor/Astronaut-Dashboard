@@ -1,15 +1,16 @@
 <template>
-  <!-- <canvas id="barChart"></canvas> -->
-  <Bar id="bar-id" :options="chartOptions" :data="compChartData" />
-  <!-- {{ astronauts }} -->
-  <!-- <Line
-  id="my-chart2-id"
-  :options="planetChartData.options"
-  :data="planetChartData.data"
-  /> -->
+  <div class="card">
+    <div class="card-header"><h4>Age Range</h4></div>
+    <div class="card-body chart-body">
+      <Bar id="bar-id" :options="chartOptions" :data="compChartData" />
+    </div>
+  </div>
+
 </template>
 
+
 <script setup>
+
 import { computed, ref } from "vue";
 import { BarController, Chart } from "chart.js";
 import { planetChartData } from "../data/planet-data.js";
@@ -47,6 +48,11 @@ const testData = ref({ data: [1, 30, 20, 12, 10] });
 const chartOptions = ref({
   responsive: false,
   maintainAspectRatio: true,
+  plugins: {
+    legend: {
+      display: false
+    }
+  }
 });
 
 const chartData = ref({
@@ -123,14 +129,19 @@ const astronauts = computed(() => {
 /* canvas{
   border: 2px solid green;
 } */
+/* 
+.card {
+  margin-left: 500px;
+} */
 
 #bar-id {
   position: relative;
-  margin: auto;
+  /* margin: auto; */
   /* width: 100%; */
-  width: 500px;
+  width: 100%;
   /* min-width:500px; */
-  max-height: 300px;
+  /* max-height: 300px; */
+  /* height: 280px; */
   /* height: 500px; */
 }
 </style>

@@ -2,7 +2,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import TheWelcome from "./components/TheWelcome.vue";
 import BarChart from "./components/BarChart.vue"
-import PieChart from "./components/PieChart.vue";
+import ListCard from "./components/ListCard.vue";
 import LineChart from "./components/LineChart.vue";
 import Doughnutchart from "./components/Doughnutchart.vue";
 import Card from "./components/Card.vue";
@@ -103,7 +103,8 @@ return results;
 </script>
 
 <template>
-  <header class="topHeader">
+  <header>
+    <div class="topHeader"></div>
     <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
 
     <!-- <div class="wrapper">
@@ -121,44 +122,48 @@ return results;
     <!-- <TheWelcome /> -->
     <!-- <h2>Displaying Live statistics</h2> -->
     <!-- <h2>Row 1</h2> -->
-    <div class="row mt-5">
-      <div class="col">
+    <div class="row">
+      <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsInTraining.label" :amount="astronautsInTraining.amount"/>
       </div>
-      <div class="col">
+      <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsActive.label" :amount="astronautsActive.amount"/>
        <!-- <canvas id="myChart"></canvas> -->
       </div>
-      <div class="col">
+      <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsInSpace.label" :amount="astronautsInSpace.amount"/>
       </div>
-      <div class="col">
+      <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsWhoHaveFlown.label" :amount="astronautsWhoHaveFlown.amount"/>
       </div>
-      <div class="col">
+      <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsWhoHaveSpaceWalked.label" :amount="astronautsWhoHaveSpaceWalked.amount"/>
       </div>
     </div>
     <!-- <h2>Row 2</h2> -->
-    <div class="row mt-5">
-      <div class="col col-lg-6 mx-6">Chart_1 (line/bar)
+    <div class="row mt-3">
+      <div class="col mt-sm-2 col-lg-6 mx-6">
         <BarChart></BarChart>
       </div>
-      <div class="col col-lg-6 mx-6">Chart_2 (pie)
-        <PieChart></PieChart>
+      <div class="col mt-sm-2 mt-2 col-lg-6 mx-6">
+        <ListCard></ListCard>
       </div>
     </div>
     <!-- <h2>Row 3</h2> -->
-    <div class="row mt-5">
-      <div class="col col-lg-6 mx-6">Chart_3 (line/bar)
+    <div class="row mt-3">
+      <div class="col mt-sm-2 col-lg-6 mx-6">
          <LineChart></LineChart>
       </div>
-      <div class="col col-lg-6 mx-6">Chart_4 (pie)
+      <div class="col mt-sm-2 col-lg-6 mx-6">
         <Doughnutchart></Doughnutchart>
       </div>
     </div>
-    
   </main>
+  <footer>
+    <div class="footer-content">
+      <p>Live data is populated from: <a href="https://thespacedevs.com/llapi">https://thespacedevs.com/llapi</a></p>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
@@ -173,7 +178,11 @@ return results;
 
 .topHeader {
   background-color: #333;
+  position: fixed;
+  top: 0;
   height: 10vh;
+  width: 100%;
+  z-index: 1;
 }
 
 .sidebar {
@@ -190,6 +199,7 @@ return results;
   color: white;
   /* Text color */
   padding-top: 20px;
+  z-index: 2;
 }
 
 .sidebar > h2 {
@@ -213,7 +223,7 @@ return results;
 .row {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .col{ 
@@ -225,20 +235,56 @@ return results;
 /* Main content */
 .main-content {
   margin-left: 210px;
+  margin-top: 90px;
   /* Offset the content to the right of the sidebar */
   padding: 20px;
+  background-color: bisque;
+  min-height: 100%;
+  height: 86vh;
+  overflow: auto;
+  /* height: 85vh; */
   /* background-image: url(assets/maxresdefault.png);
   background-repeat: no-repeat;
   background-size: cover; */
 }
 
+.chart-body{
+  height: 350px;
+}
+
+.footer-content{
+  /* margin-left: 210px; */
+  background-color: gray;
+  height: 5vh;
+  /* min-height: 100%; */
+  /* position: relative; */
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+
+}
+
+.footer-content > p {
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 1250px) {
+
+
+  .topHeader{
+
+    display: none;
+  }
   .sidebar {
     /* height: 100vh; */
     /* Full height */
     /* width: 250px; */
+    position: fixed;
     width: 100%;
     height: 100%;
+    top: 0;
     /* Set the width of the sidebar */
     position: relative;
     background-color: #333;
@@ -252,34 +298,10 @@ return results;
 
   .main-content{
     margin: 0;
+    margin-top: 0;
+    height: 90vh
   }
 }
 
-/* header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-    border: 1px solid white;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-} */
 </style>
