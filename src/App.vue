@@ -19,6 +19,13 @@ astroStore.fetchAstroData();
 const cardOneLabel = ref("Card One");
 const cardOneAmount = ref("0");
 
+// let random = Math.floor(Math.random() * 3);
+
+// const randomImage = `url(assets/imrs.png)`;
+
+
+
+
 const astronautsActive = computed(() => {
   let data = JSON.parse(JSON.stringify(astroStore.astroData));
   let count = 0;
@@ -35,7 +42,6 @@ const astronautsActive = computed(() => {
 
 }); 
 
-
 const astronautsInTraining = computed(() => {
   let data = JSON.parse(JSON.stringify(astroStore.astroData));
   let count = 0;
@@ -51,7 +57,6 @@ const astronautsInTraining = computed(() => {
   return results;
 
 }); 
-
 
 const astronautsInSpace = computed(() => {
 
@@ -116,6 +121,7 @@ return results;
       <!-- <a href="#home">Dashboard</a>
       <a href="#services">Table</a> -->
     </div>
+    <div class="background-image"></div>
   </header>
 
   <main class="main-content">
@@ -177,9 +183,11 @@ return results;
 /* Sidebar styles */
 
 .topHeader {
-  background-color: #333;
+  /* background-color: #333; */
+  background-color: rgba(51, 51, 51, .7);
   position: fixed;
   top: 0;
+  left: 210px;
   height: 10vh;
   width: 100%;
   z-index: 1;
@@ -194,7 +202,8 @@ return results;
   /* Keep it fixed on the left side */
   top: 0;
   left: 0;
-  background-color: #333;
+  /* background-color: #333; */
+  background-color: rgba(51, 51, 51, .7);
   /* Dark background color */
   color: white;
   /* Text color */
@@ -220,6 +229,20 @@ return results;
   /* Hover effect */
 }
 
+.background-image {
+  /* background-image: url(assets/maxresdefault.png); */
+  background-image: url(assets/imrs.png);
+  /* background-image: v-bind('randomImage'); */
+  /* background-image: url(assets/SpaceX-Polaris-Dawn-Spacewalk.jpg); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -231,21 +254,25 @@ return results;
   margin: auto;
 }
 
-
 /* Main content */
 .main-content {
   margin-left: 210px;
   margin-top: 90px;
   /* Offset the content to the right of the sidebar */
   padding: 20px;
-  background-color: bisque;
+  /* background-color: bisque; */
   min-height: 100%;
   height: 86vh;
   overflow: auto;
   /* height: 85vh; */
-  /* background-image: url(assets/maxresdefault.png);
-  background-repeat: no-repeat;
-  background-size: cover; */
+  /* background-image: url(assets/maxresdefault.png); */
+  /* background-image: url(assets/SpaceX-Polaris-Dawn-Spacewalk.jpg); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+}
+
+.row{
+  /* display: none; */
 }
 
 .chart-body{
@@ -260,14 +287,20 @@ return results;
   /* position: relative; */
   position: fixed;
   bottom: 0;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
 
 }
 
 .footer-content > p {
+  margin-top: .5rem;
   display: flex;
   justify-content: center;
+}
+
+.footer-content > p > a {
+  margin-left: .5rem;
+  color: black;
 }
 
 @media (max-width: 1250px) {

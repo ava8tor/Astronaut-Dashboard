@@ -35,13 +35,13 @@ export const useAstronautStore = defineStore('astrounauts', () => {
             // const data = await axios.get('https://jsonplaceholder.typicode.com/users');
             let data: any = [], repo = null, page = 0;
             let url = 'https://lldev.thespacedevs.com/2.3.0/astronauts/?limit=100';
-            do{
+            // do{
                 repo = await axios.get(url);
 
                 // console.log(repo.data);
                 data = data.concat(repo.data.results);
                 url = repo.data.next;
-            } while(url != null)
+            // } while(url != null)
             
             astroData.value = data;
             // console.log(data);
