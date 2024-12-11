@@ -1,33 +1,24 @@
-# -
+# Astronaut Dashbaord
 
-This template should help get you started developing with Vue 3 in Vite.
+Live  Link to the application:  https://ava8tor.github.io/Astronaut-Dashboard/
 
-## Recommended IDE Setup
+Steps for setting up and running the application locally can also be found below.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Project Description
 
-## Type Support for `.vue` Imports in TS
+This is a dashboard application meant to display live statistics for active astronauts. The data is pulled from a api sourced by The Space Devs Launch Library at https://thespacedevs.com/llapi. 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+The application is built using Vue.js framework to create a SPA. It also incorporates Chart.js in order to render the data, once sorted based on certain criteria and mapped into an array, into multiple charts, tables, and graphs.   
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Project Setup and Running Locally
 
 ```sh
-npm install
-```
+- Clone the project
 
-### Compile and Hot-Reload for Development
+- Open the project folder in the terminal 
 
-```sh
-npm run dev
-```
+- Run the command npm install
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
+- Run the command npm run dev to start the project
 ```
