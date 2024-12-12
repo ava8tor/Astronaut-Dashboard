@@ -134,7 +134,6 @@ return results;
       </div>
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsActive.label" :amount="astronautsActive.amount"/>
-       <!-- <canvas id="myChart"></canvas> -->
       </div>
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
         <Card :label="astronautsInSpace.label" :amount="astronautsInSpace.amount"/>
@@ -146,7 +145,6 @@ return results;
         <Card :label="astronautsWhoHaveSpaceWalked.label" :amount="astronautsWhoHaveSpaceWalked.amount"/>
       </div>
     </div>
-    <!-- <h2>Row 2</h2> -->
     <div class="row mt-3">
       <div class="col mt-sm-2 col-lg-6 mx-6">
         <BarChart></BarChart>
@@ -155,7 +153,6 @@ return results;
         <ListCard></ListCard>
       </div>
     </div>
-    <!-- <h2>Row 3</h2> -->
     <div class="row mt-3">
       <div class="col mt-sm-2 col-lg-6 mx-6">
          <LineChart></LineChart>
@@ -168,22 +165,15 @@ return results;
   <footer>
     <div class="footer-content">
       <p>Live data is populated from: <a href="https://thespacedevs.com/llapi">https://thespacedevs.com/llapi</a></p>
+      <p> Note: The data presented may not be accurate to real life due to using the development endpoint and pulling data that may be stale
+        or limited. </p>
     </div>
   </footer>
 </template>
 
 <style scoped>
-/* body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-} */
-
-/* Sidebar styles */
 
 .topHeader {
-  /* background-color: #333; */
   background-color: rgba(51, 51, 51, .7);
   position: fixed;
   top: 0;
@@ -195,18 +185,12 @@ return results;
 
 .sidebar {
   height: 100vh;
-  /* Full height */
   width: 210px;
-  /* Set the width of the sidebar */
   position: fixed;
-  /* Keep it fixed on the left side */
   top: 0;
   left: 0;
-  /* background-color: #333; */
   background-color: rgba(51, 51, 51, .7);
-  /* Dark background color */
   color: white;
-  /* Text color */
   padding-top: 20px;
   z-index: 2;
 }
@@ -218,7 +202,6 @@ return results;
 .sidebar a {
   display: block;
   color: white;
-  /* Text color */
   padding: 10px 20px;
   text-decoration: none;
   font-size: 18px;
@@ -226,7 +209,6 @@ return results;
 
 .sidebar a:hover {
   background-color: #575757;
-  /* Hover effect */
 }
 
 .background-image {
@@ -246,45 +228,29 @@ return results;
 .row {
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
 }
 
 .col{ 
-  /* border: 1px solid black; */
   margin: auto;
 }
 
-/* Main content */
+
 .main-content {
   margin-left: 210px;
   margin-top: 90px;
-  /* Offset the content to the right of the sidebar */
   padding: 20px;
-  /* background-color: bisque; */
   min-height: 100%;
   height: 86vh;
   overflow: auto;
-  /* height: 85vh; */
-  /* background-image: url(assets/maxresdefault.png); */
-  /* background-image: url(assets/SpaceX-Polaris-Dawn-Spacewalk.jpg); */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
-}
-
-.row{
-  /* display: none; */
 }
 
 .chart-body{
   height: 350px;
 }
 
-.footer-content{
-  /* margin-left: 210px; */
+.footer-content {
   background-color: gray;
-  height: 5vh;
-  /* min-height: 100%; */
-  /* position: relative; */
+  height: 10vh;
   position: fixed;
   bottom: 0;
   z-index: 2;
@@ -311,22 +277,17 @@ return results;
     display: none;
   }
   .sidebar {
-    /* height: 100vh; */
-    /* Full height */
-    /* width: 250px; */
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
-    /* Set the width of the sidebar */
     position: relative;
     background-color: #333;
     padding-top: 20px;
-    /* border: 10px solid bisque; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin: auto; */
+
   }
 
   .main-content{
