@@ -131,7 +131,7 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
         <ListCard></ListCard>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2 mb-3">
       <div class="col mt-2 col-lg-6 mx-6">
         <LineChart></LineChart>
       </div>
@@ -143,14 +143,7 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
   <footer>
     <div class="footer-content">
       <p>
-        Live data is populated from:
-        <a href="https://thespacedevs.com/llapi"
-          >https://thespacedevs.com/llapi</a
-        >
-      </p>
-      <p>
-        Note: The data presented may not be accurate to real life due to using
-        the development endpoint and pulling data that may be stale or limited.
+        Info is populated by test data from dev endpoint:<a href="https://thespacedevs.com/llapi">https://thespacedevs.com/llapi</a>
       </p>
     </div>
   </footer>
@@ -221,10 +214,10 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
 .main-content {
   margin-left: 210px;
   margin-top: 10vh;
-  height: 80vh;
-  padding: 10px;
+  height: 86vh;
+  padding: 25px;
   overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .chart-body {
@@ -233,18 +226,26 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
 
 .footer-content {
   background-color: gray;
-  height: 10vh;
+  /* height: 5vh; */
+  margin: auto;
   position: fixed;
   bottom: 0;
   z-index: 2;
   width: 100%;
   padding: 10px;
+  /* white-space: pre-wrap; */
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .footer-content > p {
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
+  margin: auto;
+  align-items: center;
+  text-align: center;
 }
 
 .footer-content > p > a {
@@ -272,7 +273,8 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
   .main-content {
     margin: 0;
     margin-bottom: 20px;
-    height: 84vh;
+    height: 89vh;
+    /* padding: 15px */
   }
 
   .footer-content {
