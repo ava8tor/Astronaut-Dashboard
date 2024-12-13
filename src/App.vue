@@ -123,19 +123,19 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
         />
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col mt-sm-2 col-lg-6 mx-6">
+    <div class="row mt-2">
+      <div class="col mt-2 col-lg-6 mx-6">
         <BarChart></BarChart>
       </div>
-      <div class="col mt-sm-2 mt-2 col-lg-6 mx-6">
+      <div class="col mt-2 col-lg-6 mx-6">
         <ListCard></ListCard>
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col mt-sm-2 col-lg-6 mx-6">
+    <div class="row mt-2">
+      <div class="col mt-2 col-lg-6 mx-6">
         <LineChart></LineChart>
       </div>
-      <div class="col mt-sm-2 col-lg-6 mx-6">
+      <div class="col mt-2 col-lg-6 mx-6 gap-2">
         <Doughnutchart></Doughnutchart>
       </div>
     </div>
@@ -220,11 +220,11 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
 
 .main-content {
   margin-left: 210px;
-  margin-top: 90px;
-  padding: 20px;
-  min-height: 100%;
-  height: 86vh;
-  overflow: auto;
+  margin-top: 10vh;
+  height: 80vh;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .chart-body {
@@ -238,6 +238,7 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
   bottom: 0;
   z-index: 2;
   width: 100%;
+  padding: 10px;
 }
 
 .footer-content > p {
@@ -270,16 +271,12 @@ const astronautsWhoHaveSpaceWalked = computed(() => {
 
   .main-content {
     margin: 0;
-    /* margin-top: -10px; */
     margin-bottom: 20px;
-    height: 85vh;
-    overflow: auto;
+    height: 84vh;
   }
 
   .footer-content {
     padding: 10px;
-    opacity: .5
-    /* position: relative; */
 
   }
 }
