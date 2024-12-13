@@ -17,30 +17,11 @@ import { useAstronautStore } from "@/store";
 import {
   Chart as ChartJS,
   ArcElement,
-  Title,
   Tooltip,
   Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
 } from "chart.js";
 
-//   ChartJS.register(
-//     Title,
-//     Tooltip,
-//     Legend,
-//     BarElement,
-//     CategoryScale,
-//     LinearScale,
-//     PointElement,
-//     LineElement
-//   );
-
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-// const testData = ref({ data: [30, 20] });
 
 //pull computed data here
 
@@ -50,7 +31,6 @@ const chartOptions = ref({
   plugins: {
     legend: {
       position: 'left',
-      // align: 'start'
     }
   }
 });
@@ -80,8 +60,6 @@ const compChartData = computed(() => {
 
   let data = JSON.parse(JSON.stringify(chartData.value));
 
-  // console.log(data.datasets.data[0]);
-
   for (let i = 0; i < astroData.length; i++) {
     if (astroData[i].status.id == 1) {
       let type = astroData[i].type.name;
@@ -95,33 +73,14 @@ const compChartData = computed(() => {
     }
   }
 
-  // console.log(data.labels);
-  // console.log(data.datasets);
-
-  // data.datasets[0].data = testData.value.data;
-
-  // console.log(chartData.value);
-
   return data;
 });
 </script>
 
 <style>
-/* canvas{
-      border: 2px solid green;
-      } */
-
 #pie-id {
-  /* border: 2px solid green; */
   position: relative;
   margin: auto;
   width: 100%;
-  /* margin-bottom: 50px; */
-  /* width: 100%; */
-  /* max-width: 230px; */
-  /* max-height: 230px; */
-  /* width: 300px; */
-  /* min-width: 200px; */
-  /* max-height: 300px; */
 }
 </style>

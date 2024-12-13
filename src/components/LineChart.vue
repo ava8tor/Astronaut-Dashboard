@@ -9,10 +9,7 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import { BarController, Chart } from "chart.js";
-import { planetChartData } from "../data/planet-data.js";
 import { useAstronautStore } from "@/store";
-import { Bar } from "vue-chartjs";
 import { Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -25,7 +22,6 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
-import { onMounted } from "vue";
 
 ChartJS.register(
   Title,
@@ -37,11 +33,6 @@ ChartJS.register(
   PointElement,
   LineElement
 );
-
-// console.log(planetChartData);
-
-// console.log(planetChartData.data);
-// console.log(planetChartData.options);
 
 const testData = ref({ data: [30, 20, 12, 10] });
 
@@ -68,9 +59,6 @@ let chartData = ref({
       data: [],
       backgroundColor: [
         "rgba(75, 192, 192, 0.2)",
-        // "rgba(255, 99, 132, 0.2)",
-        // "rgba(255, 159, 64, 0.2)",
-        // "rgba(255, 205, 86, 0.2)",
       ],
     },
   ],
@@ -86,13 +74,10 @@ const compChartData = computed(() => {
 
   for (let i = 0; i < astroData.length; i++) {
     if (astroData[i].status.id == 1 && astroData[i].last_flight != null) {
+      
       let d = new Date(astroData[i].last_flight);
       let y = d.getFullYear();
 
-      // if (y == null) {
-      //   console.log(y);
-      //   console.log(astroData[i]);
-      // }
 
       if (!years.includes(y)) {
         years.push(y);
@@ -100,9 +85,6 @@ const compChartData = computed(() => {
       } else {
         yearsCount[y]++;
       }
-
-      // console.log(astroData[i])
-      //2021-04-23T09:49:02Z
     }
   }
 
@@ -113,8 +95,6 @@ const compChartData = computed(() => {
     results.value.push(yearsCount[y]);
   }
 
-  // console.log(years);
-  // console.log(results.value);
   yearLabels.value = years;
 
   let data = JSON.parse(JSON.stringify(chartData.value));
@@ -126,18 +106,12 @@ const compChartData = computed(() => {
 </script>
 
 <style>
-/* canvas {
-  border: 2px solid green;
-} */
 
 #line-id {
   position: relative;
   margin: auto;
-  /* width: 100%; */
   width: 100%;
-  /* max-width: 500px; */
-  /* min-width: 500px; */
   max-height: 300px;
-  /* height: 500px; */
+
 }
 </style>

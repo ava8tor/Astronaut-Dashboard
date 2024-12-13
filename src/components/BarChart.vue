@@ -5,17 +5,13 @@
       <Bar id="bar-id" :options="chartOptions" :data="compChartData" />
     </div>
   </div>
-
 </template>
 
 
 <script setup>
 
 import { computed, ref } from "vue";
-import { BarController, Chart } from "chart.js";
-import { planetChartData } from "../data/planet-data.js";
 import { Bar } from "vue-chartjs";
-import { Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -27,7 +23,7 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
-import { onMounted } from "vue";
+
 import { useAstronautStore, useCountStore } from "@/store.ts";
 
 ChartJS.register(
@@ -69,9 +65,6 @@ const chartData = ref({
       data: [],
       backgroundColor: [
         "rgba(75, 192, 192, 0.2)",
-        // "rgba(255, 99, 132, 0.2)",
-        // "rgba(255, 159, 64, 0.2)",
-        // "rgba(255, 205, 86, 0.2)",
       ],
     },
   ],
@@ -83,7 +76,7 @@ const compChartData = computed(() => {
   data.datasets[0].data = testData.value.data;
 
   let astroData = JSON.parse(JSON.stringify(astroStore.astroData));
-  // console.log(astroData);
+
   let ageRange = [0, 0, 0, 0, 0];
 
   for (let i = 0; i < astroData.length; i++) {
@@ -97,51 +90,20 @@ const compChartData = computed(() => {
     }
   }
 
-  // console.log(ageRange);
-
   data.datasets[0].data = ageRange;
 
-  // console.log(chartData.value);
 
   return data;
 });
-
-// const countStore = useCountStore();
-
-// console.log(countStore.n);
-// countStore.increment();
-// console.log(countStore.n);
 
 const astroStore = useAstronautStore();
 
-const astronauts = computed(() => {
-  // console.log(astroStore.astroData);
-  let data = JSON.parse(JSON.stringify(astroStore.astroData));
-  // console.log(data.length);
-  return data;
-});
-// astroStore.fetchAstroData();
-// console.log(astroStore.n);
-// console.log(astroStore.astroData)
 </script>
 
 <style>
-/* canvas{
-  border: 2px solid green;
-} */
-/* 
-.card {
-  margin-left: 500px;
-} */
 
 #bar-id {
   position: relative;
-  /* margin: auto; */
-  /* width: 100%; */
   width: 100%;
-  /* min-width:500px; */
-  /* max-height: 300px; */
-  /* height: 280px; */
-  /* height: 500px; */
 }
 </style>

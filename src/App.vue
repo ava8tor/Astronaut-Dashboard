@@ -1,30 +1,14 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
-import BarChart from "./components/BarChart.vue"
+import BarChart from "./components/BarChart.vue";
 import ListCard from "./components/ListCard.vue";
 import LineChart from "./components/LineChart.vue";
 import Doughnutchart from "./components/Doughnutchart.vue";
 import Card from "./components/Card.vue";
 import { useAstronautStore } from "./store";
-// import { inject } from 'vue';
-import axios from 'axios';
 import { ref, computed } from "vue";
-
-
 
 const astroStore = useAstronautStore();
 astroStore.fetchAstroData();
-
-const cardOneLabel = ref("Card One");
-const cardOneAmount = ref("0");
-
-// let random = Math.floor(Math.random() * 3);
-
-// const randomImage = `url(assets/imrs.png)`;
-
-
-
 
 const astronautsActive = computed(() => {
   let data = JSON.parse(JSON.stringify(astroStore.astroData));
@@ -34,32 +18,27 @@ const astronautsActive = computed(() => {
       count++;
     }
   }
-  
-  let results = {label: "Total Active", amount: count};
+
+  let results = { label: "Total Active", amount: count };
 
   return results;
-
-
-}); 
+});
 
 const astronautsInTraining = computed(() => {
   let data = JSON.parse(JSON.stringify(astroStore.astroData));
   let count = 0;
-  console.log(data);
   for (let i = 0; i < data.length; i++) {
     if (data[i].status.id == 3) {
       count++;
     }
   }
-  
-  let results = {label: "Total In Training", amount: count};
+
+  let results = { label: "Total In Training", amount: count };
 
   return results;
-
-}); 
+});
 
 const astronautsInSpace = computed(() => {
-
   let data = JSON.parse(JSON.stringify(astroStore.astroData));
   let count = 0;
   for (let i = 0; i < data.length; i++) {
@@ -67,82 +46,81 @@ const astronautsInSpace = computed(() => {
       count++;
     }
   }
-  
-  let results = {label: "Total In Space", amount: count};
+
+  let results = { label: "Total In Space", amount: count };
 
   return results;
-}); 
+});
 
 const astronautsWhoHaveFlown = computed(() => {
-
-let data = JSON.parse(JSON.stringify(astroStore.astroData));
-let count = 0;
-for (let i = 0; i < data.length; i++) {
-  if (data[i].flights_count > 0 &&  data[i].status.id == 1) {
-    count++;
+  let data = JSON.parse(JSON.stringify(astroStore.astroData));
+  let count = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].flights_count > 0 && data[i].status.id == 1) {
+      count++;
+    }
   }
-}
 
-let results = {label: "Total Have flown", amount: count};
+  let results = { label: "Total Have flown", amount: count };
 
-return results;
-}); 
+  return results;
+});
 
 const astronautsWhoHaveSpaceWalked = computed(() => {
-
-let data = JSON.parse(JSON.stringify(astroStore.astroData));
-let count = 0;
-for (let i = 0; i < data.length; i++) {
-  if (data[i].spacewalks_count > 0 &&  data[i].status.id == 1) {
-    count++;
+  let data = JSON.parse(JSON.stringify(astroStore.astroData));
+  let count = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].spacewalks_count > 0 && data[i].status.id == 1) {
+      count++;
+    }
   }
-}
 
-let results = {label: "Total Have spacewalked", amount: count};
+  let results = { label: "Total Have spacewalked", amount: count };
 
-return results;
-}); 
-
-
-
+  return results;
+});
 </script>
 
 <template>
   <header>
     <div class="topHeader"></div>
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-
-    <!-- <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div> -->
-
     <div class="sidebar">
       <h2>Astronaut Dashboard</h2>
-      <!-- <a href="#home">Dashboard</a>
-      <a href="#services">Table</a> -->
     </div>
     <div class="background-image"></div>
   </header>
 
   <main class="main-content">
-    <!-- <TheWelcome /> -->
-    <!-- <h2>Displaying Live statistics</h2> -->
-    <!-- <h2>Row 1</h2> -->
     <div class="row">
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
-        <Card :label="astronautsInTraining.label" :amount="astronautsInTraining.amount"/>
+        <Card
+          :label="astronautsInTraining.label"
+          :amount="astronautsInTraining.amount"
+        />
       </div>
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
-        <Card :label="astronautsActive.label" :amount="astronautsActive.amount"/>
+        <Card
+          :label="astronautsActive.label"
+          :amount="astronautsActive.amount"
+        />
       </div>
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
-        <Card :label="astronautsInSpace.label" :amount="astronautsInSpace.amount"/>
+        <Card
+          :label="astronautsInSpace.label"
+          :amount="astronautsInSpace.amount"
+        />
       </div>
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
-        <Card :label="astronautsWhoHaveFlown.label" :amount="astronautsWhoHaveFlown.amount"/>
+        <Card
+          :label="astronautsWhoHaveFlown.label"
+          :amount="astronautsWhoHaveFlown.amount"
+        />
       </div>
       <div class="col mt-sm-2 mt-md-2 mt-lg-0">
-        <Card :label="astronautsWhoHaveSpaceWalked.label" :amount="astronautsWhoHaveSpaceWalked.amount"/>
+        <Card
+          :label="astronautsWhoHaveSpaceWalked.label"
+          :amount="astronautsWhoHaveSpaceWalked.amount"
+        />
       </div>
     </div>
     <div class="row mt-3">
@@ -155,7 +133,7 @@ return results;
     </div>
     <div class="row mt-3">
       <div class="col mt-sm-2 col-lg-6 mx-6">
-         <LineChart></LineChart>
+        <LineChart></LineChart>
       </div>
       <div class="col mt-sm-2 col-lg-6 mx-6">
         <Doughnutchart></Doughnutchart>
@@ -164,17 +142,23 @@ return results;
   </main>
   <footer>
     <div class="footer-content">
-      <p>Live data is populated from: <a href="https://thespacedevs.com/llapi">https://thespacedevs.com/llapi</a></p>
-      <p> Note: The data presented may not be accurate to real life due to using the development endpoint and pulling data that may be stale
-        or limited. </p>
+      <p>
+        Live data is populated from:
+        <a href="https://thespacedevs.com/llapi"
+          >https://thespacedevs.com/llapi</a
+        >
+      </p>
+      <p>
+        Note: The data presented may not be accurate to real life due to using
+        the development endpoint and pulling data that may be stale or limited.
+      </p>
     </div>
   </footer>
 </template>
 
 <style scoped>
-
 .topHeader {
-  background-color: rgba(51, 51, 51, .7);
+  background-color: rgba(51, 51, 51, 0.7);
   position: fixed;
   top: 0;
   left: 210px;
@@ -189,7 +173,7 @@ return results;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(51, 51, 51, .7);
+  background-color: rgba(51, 51, 51, 0.7);
   color: white;
   padding-top: 20px;
   z-index: 2;
@@ -214,11 +198,11 @@ return results;
 .background-image {
   /* background-image: url(assets/maxresdefault.png); */
   background-image: url(assets/imrs.png);
-  /* background-image: v-bind('randomImage'); */
   /* background-image: url(assets/SpaceX-Polaris-Dawn-Spacewalk.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
+  pointer-events: none;
   top: 0;
   left: 0;
   width: 100%;
@@ -230,10 +214,9 @@ return results;
   flex-direction: row;
 }
 
-.col{ 
+.col {
   margin: auto;
 }
-
 
 .main-content {
   margin-left: 210px;
@@ -244,7 +227,7 @@ return results;
   overflow: auto;
 }
 
-.chart-body{
+.chart-body {
   height: 350px;
 }
 
@@ -255,25 +238,21 @@ return results;
   bottom: 0;
   z-index: 2;
   width: 100%;
-
 }
 
 .footer-content > p {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: center;
 }
 
 .footer-content > p > a {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   color: black;
 }
 
 @media (max-width: 1250px) {
-
-
-  .topHeader{
-
+  .topHeader {
     display: none;
   }
   .sidebar {
@@ -287,15 +266,21 @@ return results;
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
 
-  .main-content{
+  .main-content {
     margin: 0;
-    margin-top: 0;
-    height: 90vh
+    /* margin-top: -10px; */
+    margin-bottom: 20px;
+    height: 85vh;
+    overflow: auto;
+  }
+
+  .footer-content {
+    padding: 10px;
+    opacity: .5
+    /* position: relative; */
+
   }
 }
-
-
 </style>
